@@ -1,0 +1,85 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    int counter = 0;
+}
+
+@model List<Team>
+
+<div class="mx-3">
+
+    <div style="display:flex; justify-content:space-between;align-items:center">
+        <div>
+            <h1>Manage Teams</h1>
+        </div>
+        <div>
+            <a asp-action="create">
+                <button class="btn btn-info">
+                    <i class="bi bi-pencil-square"></i>
+                    Create a Team data
+                </button>
+            </a>
+        </div>
+    </div>
+
+    <div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Order</th>
+                    <th scope="col">Fullname</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Action</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    counter++;
+                    <tr>
+                        <th scope="row">@counter</th>
+                        <td>@item.Id</td>
+                        <td>@item.Order</td>
+                        <td>@item.Fullname</td>
+                        <td>@item.Position</td>
+                        <td>
+                            <image src=""></image>
+                        </td>
+                        <td>
+
+                            <div class="d-flex">
+                                <div class="ms-1">
+                                <a asp-action="update" asp-route-id="@item.Id">
+                                    <button class="btn btn-primary">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                </a>
+                            </div>
+
+                            <div class="mx-3">
+                                    <a class="item-delete" asp-action="delete" asp-route-id="@item.Id">
+                                    <button class="btn btn-danger">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </a>
+                            </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+
+
